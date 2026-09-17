@@ -1,0 +1,16 @@
+# Create the DHCP pool and set the gateway (your eth1 IP)
+set service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 option default-router 10.10.11.254
+
+# Set the DNS servers (using Cloudflare and Google as examples)
+set service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 option name-server 192.168.10.10
+set service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 option name-server 10.10.10.5
+
+# Define the range of IP addresses to distribute
+set service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 range 0 start 10.10.11.100
+set service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 range 0 stop 10.10.11.200
+
+set service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 option domain-name poc.local
+
+
+
+delete service dhcp-server shared-network-name INTERNAL_POOL subnet 10.10.11.0/24 option name-server 8.8.8.8
